@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="SampleEP" groupId="com.example.CycleAPIsRegistry-dev.resource" version="1.0.0" type="registry/resource" serverRole="GovernanceRegistry">
+        <item>
+            <file>SampleEP.xml</file>
+            <path>/_system/config/endpoints</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+</artifacts>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CORSSeq" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property name="Access-Control-Allow-Origin" scope="transport" type="STRING" value="*"/>
+    <property name="Access-Control-Allow-Methods" scope="transport" type="STRING" value="OPTIONS,GET"/>
+    <property name="ACCESS-CONTROL-ALLOW-HEADERS" scope="transport" type="STRING" value="Content-Type"/>
+</sequence>

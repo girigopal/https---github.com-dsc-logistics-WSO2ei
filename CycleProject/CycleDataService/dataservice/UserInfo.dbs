@@ -1,0 +1,27 @@
+<data name="UserInfo" transports="http https">
+   <config enableOData="false" id="MyPostGre">
+      <property name="carbon_datasource_name">PostGreSQL</property>
+   </config>
+   <query id="getSchema" useConfig="MyPostGre">
+      <sql>select b.src_sys_id,b.lc_id,b.user_id,b.target_url,d.hostname  from md_schema.app_user  as a  inner join md_schema.user_routing as b on a.user_id = b.user_id  inner join md_schema.lc as c on b.lc_id = c.lc_id  inner join md_schema.src_sys as d on b.src_sys_id= d.src_sys_id where LOWER(a.username)= ?</sql>
+      <result outputType="json">{&#xd; "entries": {&#xd; "entry": [&#xd; {&#xd; "srcsysid": "$src_sys_id",&#xd; "lcid": "$lc_id",&#xd; "userid": "$user_id",&#xd; "targeturl": "$target_url",&#xd; "host": "$hostname"&#xd; }&#xd; ]&#xd; }&#xd;}</result>
+      <param name="username" sqlType="STRING"/>
+   </query>
+   <query id="verifyUser" useConfig="MyPostGre">
+      <sql>select b.src_sys_id,b.lc_id,a.user_id,b.target_url,d.hostname,  a.full_name, a.email_addr  from md_schema.app_user  as a  inner join md_schema.user_routing as b on a.user_id = b.user_id  inner join md_schema.lc as c on b.lc_id = c.lc_id  inner join md_schema.src_sys as d on b.src_sys_id= d.src_sys_id  where LOWER(a.username)=? and emp_id=?</sql>
+      <result outputType="json">{&#xd; "entries": {&#xd; "entry": [&#xd; {&#xd; "srcsysid": "$src_sys_id",&#xd; "lcid": "$lc_id",&#xd; "userid": "$user_id",&#xd; "targeturl": "$target_url",&#xd; "host": "$hostname",&#xd; "fullname": "$full_name",&#xd; "email": "$email_addr"&#xd; }&#xd; ]&#xd; }&#xd;}</result>
+      <param name="username" sqlType="STRING"/>
+      <param name="empid" sqlType="STRING"/>
+   </query>
+   <resource method="POST" path="schema">
+      <call-query href="getSchema">
+         <with-param name="username" query-param="username"/>
+      </call-query>
+   </resource>
+   <resource method="POST" path="verify">
+      <call-query href="verifyUser">
+         <with-param name="username" query-param="username"/>
+         <with-param name="empid" query-param="empid"/>
+      </call-query>
+   </resource>
+</data>

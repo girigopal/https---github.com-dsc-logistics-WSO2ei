@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="CycleCountAPI" groupId="com.example.CycleAPIs.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/CycleCountAPI.xml</file>
+    </artifact>
+    <artifact name="CORSSeq" groupId="com.example.CycleAPIs.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/CORSSeq.xml</file>
+    </artifact>
+    <artifact name="DSCLdap" groupId="com.example.CycleAPIs.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/DSCLdap.xml</file>
+    </artifact>
+    <artifact name="GetUserSchemaSeq" groupId="com.example.CycleAPIs.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/GetUserSchemaSeq.xml</file>
+    </artifact>
+    <artifact name="VerifyUserSeq" groupId="com.example.CycleAPIs.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/VerifyUserSeq.xml</file>
+    </artifact>
+</artifacts>

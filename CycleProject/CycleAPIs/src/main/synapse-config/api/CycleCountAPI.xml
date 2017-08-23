@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/getLC" name="CycleCountAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="OPTIONS GET" url-mapping="/v1">
+        <inSequence>
+            <log description="log" level="custom">
+                <property name="API" value="GetLC call"/>
+            </log>
+            <property description="Accept" name="Accept" scope="transport" type="STRING" value="application/json"/>
+            <call>
+                <endpoint>
+                    <http method="get" uri-template="http://localhost:8280/services/CycleCount/getlc"/>
+                </endpoint>
+            </call>
+            <payloadFactory description="json-payload" media-type="json">
+                <format>$1</format>
+                <args>
+                    <arg evaluator="json" expression="$.entries.entry"/>
+                </args>
+            </payloadFactory>
+            <sequence key="CORSSeq"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence>
+            <payloadFactory description="erro" media-type="json">
+                <format>{"Error" :"Error occurred", "Message":"$1"}</format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:ERROR_MESSAGE"/>
+                </args>
+            </payloadFactory>
+            <sequence key="CORSSeq"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+</api>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="GetUserSchemaSeq" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="json">
+        <format>{"_postschema" :
+                    {"username":"$1"}
+       }</format>
+        <args>
+            <arg evaluator="xml" expression="$ctx:username"/>
+        </args>
+    </payloadFactory>
+    <property description="Accept" name="Accept" scope="transport" type="STRING" value="application/json"/>
+    <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
+    <call blocking="true">
+        <endpoint>
+            <http method="post" uri-template="http://localhost:8280/services/UserInfo/schema"/>
+        </endpoint>
+    </call>
+</sequence>
